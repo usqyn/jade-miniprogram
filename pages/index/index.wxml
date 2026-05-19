@@ -3,6 +3,12 @@
     <block wx:for="{{banners}}" wx:key="index">
       <swiper-item>
         <image src="{{item}}" class="banner-image" mode="aspectFill" />
+        <view class="banner-overlay">
+          <text class="banner-title">东方美玉 · 传承千年</text>
+          <text class="banner-sub">温润如玉 品味非凡</text>
+          <text class="banner-desc">精选天然翡翠 · 匠心雕琢</text>
+          <view class="banner-btn">探索更多</view>
+        </view>
       </swiper-item>
     </block>
   </swiper>
@@ -12,44 +18,88 @@
     <text class="care-text">{{careTip}}</text>
   </view>
 
-  <scroll-view scroll-x class="nav-scroll">
-    <view class="nav-list">
-      <view class="nav-item" wx:for="{{navList}}" wx:key="id" bindtap="goToProductList" data-id="{{item.id}}">
-        <view class="nav-icon">{{item.icon}}</view>
-        <text class="nav-name">{{item.name}}</text>
+  <view class="feature-section">
+    <view class="feature-item" wx:for="{{features}}" wx:key="title">
+      <text class="feature-icon">{{item.icon}}</text>
+      <view class="feature-content">
+        <text class="feature-title">{{item.title}}</text>
+        <text class="feature-desc">{{item.desc}}</text>
       </view>
     </view>
-  </scroll-view>
+  </view>
 
-  <view class="gift-section">
-    <view class="gift-card gift-left">
-      <view class="gift-title">礼赠佳选</view>
-      <view class="gift-arrow">→</view>
+  <view class="product-types-section">
+    <view class="section-header">
+      <text class="section-title">产品分类</text>
     </view>
-    <view class="gift-card gift-right">
-      <view class="gift-title">收藏臻品</view>
-      <view class="gift-arrow">→</view>
+    <scroll-view scroll-x class="types-scroll">
+      <view class="types-list">
+        <view class="type-item" wx:for="{{productTypes}}" wx:key="id">
+          <image src="{{item.image}}" class="type-image" mode="aspectFill" />
+          <text class="type-name">{{item.name}}</text>
+          <text class="type-name-en">{{item.nameEn}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="scroll-section">
+    <view class="scroll-card scroll-left">
+      <view class="scroll-icon">🔮</view>
+      <view class="scroll-content">
+        <text class="scroll-title">平安扣</text>
+        <text class="scroll-sub">平安相伴 顺遂如意</text>
+      </view>
+      <view class="scroll-btn">立即选购 →</view>
+    </view>
+    <view class="scroll-card scroll-right">
+      <view class="scroll-icon">✂️</view>
+      <view class="scroll-content">
+        <text class="scroll-title">匠心工艺</text>
+        <text class="scroll-sub">每一件作品都是匠心与时间的结晶</text>
+      </view>
+      <view class="scroll-btn">了解更多 →</view>
     </view>
   </view>
 
-  <view class="section-title">
-    <text class="title-text">新品上新</text>
+  <view class="nav-section">
+    <view class="section-header">
+      <text class="section-title">品类导航</text>
+    </view>
+    <scroll-view scroll-x class="nav-scroll">
+      <view class="nav-list">
+        <view class="nav-item" wx:for="{{navList}}" wx:key="id" bindtap="goToProductList" data-id="{{item.id}}">
+          <view class="nav-icon">{{item.icon}}</view>
+          <text class="nav-name">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 
-  <view class="product-grid">
-    <view class="product-item" wx:for="{{products}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
-      <image src="{{item.images[0]}}" class="product-image" mode="aspectFill" />
-      <view class="product-info">
-        <text class="product-name">{{item.name}}</text>
-        <view class="product-price-row">
-          <text class="product-price">¥{{item.price}}</text>
-          <text class="product-orders">已预订: {{item.orders}}</text>
+  <view class="product-section">
+    <view class="section-header">
+      <text class="section-title">新品上新</text>
+      <view class="section-more" bindtap="goToProductList" data-id="all">
+        <text class="more-text">查看全部</text>
+        <text class="more-arrow">→</text>
+      </view>
+    </view>
+
+    <view class="product-grid">
+      <view class="product-item" wx:for="{{products}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <image src="{{item.images[0]}}" class="product-image" mode="aspectFill" />
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <view class="product-price-row">
+            <text class="product-price">¥{{item.price}}</text>
+            <text class="product-orders">已预订: {{item.orders}}</text>
+          </view>
         </view>
       </view>
     </view>
   </view>
 
-  <view style="height: 120rpx;"></view>
+  <view style="height: 160rpx;"></view>
 </scroll-view>
 
 <view class="contact-buttons">

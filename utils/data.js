@@ -9,7 +9,7 @@ const products = [
     ],
     category: 'wood',
     orders: 0,
-    description: '精选上等天然材质，经传统工艺匠心打造，质地温润细腻，色泽醇厚包浆，兼具收藏与把玩价值。其造型古朴雅致，线条流畅自然，细节刻画生动，无论是日常盘玩还是案头陈设，都能彰显主人的文化品位。随着时间推移，器物表面会逐渐形成莹润的包浆，愈显岁月沉淀之美，是传承文化、修身养性的优质之选。'
+    description: '精选上等天然材质，经传统工艺匠心打造，质地温润细腻，色泽醇厚包浆，兼具收藏与把玩价值。其造型古朴雅致，线条流畅自然，细节刻画生动，无论是日常盘玩还是案头陈设，都能彰显主人的文化品位。'
   },
   {
     id: '2',
@@ -77,13 +77,30 @@ const categories = [
 ]
 
 const banners = [
-  'https://images.unsplash.com/photo-1551817958-20204d6ab222?w=1200&q=80',
+  'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=1200&q=80',
   'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&q=80',
-  'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=1200&q=80'
+  'https://images.unsplash.com/photo-1551817958-20204d6ab222?w=1200&q=80'
+]
+
+const productTypes = [
+  { id: 'bracelet', name: '手镯', nameEn: 'BRACELET', image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&q=80' },
+  { id: 'pendant', name: '吊坠', nameEn: 'PENDANT', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80' },
+  { id: 'ring', name: '戒指', nameEn: 'RING', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80' },
+  { id: 'earrings', name: '耳饰', nameEn: 'EARRINGS', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80' },
+  { id: 'ornaments', name: '摆件', nameEn: 'ORNAMENTS', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80' }
+]
+
+const features = [
+  { icon: '🛡️', title: '天然A货', desc: '权威鉴定 质量保障' },
+  { icon: '💎', title: '匠心工艺', desc: '大师雕琢 精益求精' },
+  { icon: '🎁', title: '精美礼盒', desc: '品质包装 送礼佳选' },
+  { icon: '🎧', title: '贴心服务', desc: '专业客服 售后无忧' }
 ]
 
 module.exports = {
   products,
   categories,
-  banners
+  banners,
+  productTypes,
+  features
 }

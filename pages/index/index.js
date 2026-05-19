@@ -1,4 +1,4 @@
-const { products, banners } = require('../../utils/data.js')
+const { products, banners, categories, features } = require('../../utils/data.js')
 
 Page({
   data: {
@@ -10,6 +10,8 @@ Page({
       { icon: '🥜', name: '果核类', id: 'nut' }
     ],
     products: products,
+    categories: categories,
+    features: features,
     careTip: '【保养指南】日常用软布擦拭即可保持温润，收藏更持久'
   },
 
