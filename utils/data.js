@@ -4,8 +4,8 @@ const products = [
     name: '海南黄花梨鬼脸对牌',
     price: 148,
     images: [
-      'https://images.unsplash.com/photo-1612815338314-a61e8ef07cb2?w=600&q=80',
-      'https://images.unsplash.com/photo-1612815338314-a61e8ef07cb2?w=600&q=80'
+      'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=600&q=80',
+      'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=600&q=80'
     ],
     category: 'wood',
     orders: 0,
@@ -49,7 +49,7 @@ const products = [
     name: '紫檀木手把件',
     price: 298,
     images: [
-      'https://images.unsplash.com/photo-1618169807978-5b10a1955bb5?w=600&q=80'
+      'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=600&q=80'
     ],
     category: 'wood',
     orders: 8,
@@ -79,7 +79,7 @@ const categories = [
 const banners = [
   'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=1200&q=80',
   'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&q=80',
-  'https://images.unsplash.com/photo-1551817958-20204d6ab222?w=1200&q=80'
+  'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1200&q=80'
 ]
 
 const productTypes = [
