@@ -1,0 +1,65 @@
+<scroll-view scroll-y class="container" style="height: 100vh;">
+  <swiper class="banner-swiper" indicator-dots autoplay circular interval="3000">
+    <block wx:for="{{banners}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="banner-image" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="care-tip" bindtap="playVoice">
+    <text class="care-icon">🔊</text>
+    <text class="care-text">{{careTip}}</text>
+  </view>
+
+  <scroll-view scroll-x class="nav-scroll">
+    <view class="nav-list">
+      <view class="nav-item" wx:for="{{navList}}" wx:key="id" bindtap="goToProductList" data-id="{{item.id}}">
+        <view class="nav-icon">{{item.icon}}</view>
+        <text class="nav-name">{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="gift-section">
+    <view class="gift-card gift-left">
+      <view class="gift-title">礼赠佳选</view>
+      <view class="gift-arrow">→</view>
+    </view>
+    <view class="gift-card gift-right">
+      <view class="gift-title">收藏臻品</view>
+      <view class="gift-arrow">→</view>
+    </view>
+  </view>
+
+  <view class="section-title">
+    <text class="title-text">新品上新</text>
+  </view>
+
+  <view class="product-grid">
+    <view class="product-item" wx:for="{{products}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <image src="{{item.images[0]}}" class="product-image" mode="aspectFill" />
+      <view class="product-info">
+        <text class="product-name">{{item.name}}</text>
+        <view class="product-price-row">
+          <text class="product-price">¥{{item.price}}</text>
+          <text class="product-orders">已预订: {{item.orders}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height: 120rpx;"></view>
+</scroll-view>
+
+<view class="contact-buttons">
+  <view class="contact-btn" bindtap="goToDetail">
+    <text class="contact-icon">↗</text>
+  </view>
+  <view class="contact-btn" bindtap="makePhoneCall">
+    <text class="contact-icon">📞</text>
+  </view>
+  <view class="contact-btn wechat">
+    <text class="contact-icon">💬</text>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+<scroll-view scroll-y class="container" style="height: 100vh;" wx:if="{{product}}">
+  <swiper class="image-swiper" indicator-dots autoplay circular interval="3000">
+    <block wx:for="{{product.images}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="detail-image" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="product-header">
+    <view class="product-name">{{product.name}}</view>
+    <view class="share-btn" bindtap="shareProduct">
+      <text class="share-icon">↗</text>
+    </view>
+  </view>
+
+  <view class="product-price-section">
+    <text class="product-price">¥{{product.price}}</text>
+    <text class="product-orders">已预订: {{product.orders}}</text>
+  </view>
+
+  <view class="divider"></view>
+
+  <view class="detail-section">
+    <view class="section-title">
+      <view class="title-line"></view>
+      <text class="title-text">服务详情</text>
+    </view>
+    <view class="detail-text">{{product.description}}</view>
+  </view>
+
+  <view class="brand-footer">
+    <image class="brand-logo" src="https://via.placeholder.com/100x40?text=Brand" mode="aspectFit" />
+    <text class="brand-text">由凡科轻站提供技术支持</text>
+  </view>
+
+  <view style="height: 160rpx;"></view>
+</scroll-view>
+
+<view class="contact-buttons">
+  <view class="contact-btn" bindtap="shareProduct">
+    <text class="contact-icon">↗</text>
+  </view>
+  <view class="contact-btn" bindtap="makePhoneCall">
+    <text class="contact-icon">📞</text>
+  </view>
+  <view class="contact-btn wechat">
+    <text class="contact-icon">💬</text>
+  </view>
+</view>
+
+<view class="bottom-bar">
+  <view class="phone-btn" bindtap="makePhoneCall">
+    <text class="phone-icon">📞</text>
+    <text class="phone-text">电话</text>
+  </view>
+  <view class="reserve-btn" bindtap="makeReservation">
+    <text class="reserve-text">立即预订</text>
+  </view>
+</view>

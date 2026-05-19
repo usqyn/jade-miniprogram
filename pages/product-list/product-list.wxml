@@ -1,0 +1,48 @@
+<scroll-view scroll-y class="container" style="height: 100vh;">
+  <view class="search-section">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="请输入商品名称" value="{{searchText}}" bindinput="onSearchInput" />
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="category-scroll">
+    <view class="category-list">
+      <view 
+        class="category-item {{activeCategory === item.id ? 'active' : ''}}" 
+        wx:for="{{categories}}" 
+        wx:key="id"
+        bindtap="onCategoryTap"
+        data-id="{{item.id}}"
+      >
+        <text class="category-text">{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="product-grid">
+    <view class="product-item" wx:for="{{productList}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <image src="{{item.images[0]}}" class="product-image" mode="aspectFill" />
+      <view class="product-info">
+        <text class="product-name">{{item.name}}</text>
+        <view class="product-bottom">
+          <text class="product-price">¥{{item.price}}</text>
+          <view class="cart-btn" catchtap="addToCart" data-id="{{item.id}}">
+            <text class="cart-icon">🛒</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{productList.length === 0}}" class="empty-tip">
+    <text>暂无相关商品</text>
+  </view>
+
+  <view style="height: 150rpx;"></view>
+</scroll-view>
+
+<view class="cart-float" bindtap="goToCart">
+  <text class="cart-float-icon">🛒</text>
+  <view wx:if="{{cartCount > 0}}" class="cart-badge">{{cartCount}}</view>
+</view>

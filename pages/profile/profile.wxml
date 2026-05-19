@@ -1,0 +1,80 @@
+<scroll-view scroll-y class="container" style="height: 100vh;">
+  <view class="header-bg"></view>
+
+  <view class="user-section">
+    <view class="user-info">
+      <view class="avatar">
+        <image wx:if="{{hasLogin && userInfo}}" src="{{userInfo.avatarUrl}}" class="avatar-image" mode="aspectFill" />
+        <view wx:else class="avatar-placeholder">
+          <text class="avatar-icon">👤</text>
+        </view>
+      </view>
+      <view class="user-detail">
+        <view class="user-name">{{hasLogin && userInfo ? userInfo.nickName : '请点击登录'}}</view>
+        <view class="user-desc">注册/登录会员享更多特权</view>
+      </view>
+      <view wx:if="{{!hasLogin}}" class="login-btn" bindtap="login">
+        <text class="login-text">立即登录</text>
+      </view>
+    </view>
+
+    <view class="orders-section">
+      <view class="orders-header">
+        <text class="orders-title">所有订单</text>
+        <view class="orders-more">
+          <text class="more-text">全部</text>
+          <text class="more-arrow">→</text>
+        </view>
+      </view>
+      <view class="orders-grid">
+        <view class="order-item" wx:for="{{orderTabs}}" wx:key="id">
+          <view class="order-icon-badge">
+            <text class="order-icon">{{item.icon}}</text>
+          </view>
+          <text class="order-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="features-section">
+      <view class="features-title">我的功能</view>
+      <view class="features-list">
+        <view class="feature-item" wx:for="{{featureList}}" wx:key="name">
+          <view class="feature-icon-wrapper">
+            <text class="feature-icon">{{item.icon}}</text>
+            <view wx:if="{{item.badge}}" class="feature-badge">{{item.badge}}</view>
+          </view>
+          <text class="feature-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="phone-section">
+      <text class="phone-icon">📞</text>
+      <text class="phone-number">13800000000</text>
+    </view>
+
+    <view wx:if="{{hasLogin}}" class="logout-btn" bindtap="logout">
+      <text class="logout-text">退出当前登录</text>
+    </view>
+
+    <view class="brand-footer">
+      <image class="brand-logo" src="https://via.placeholder.com/100x40?text=Brand" mode="aspectFit" />
+      <text class="brand-text">由凡科轻站提供技术支持</text>
+    </view>
+  </view>
+
+  <view style="height: 160rpx;"></view>
+</scroll-view>
+
+<view class="contact-buttons">
+  <view class="contact-btn">
+    <text class="contact-icon">↗</text>
+  </view>
+  <view class="contact-btn" bindtap="makePhoneCall">
+    <text class="contact-icon">📞</text>
+  </view>
+  <view class="contact-btn wechat">
+    <text class="contact-icon">💬</text>
+  </view>
+</view>

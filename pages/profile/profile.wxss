@@ -1,0 +1,294 @@
+.container {
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300rpx;
+  background: linear-gradient(180deg, #d4c4a8 0%, #f5f0e5 100%);
+  z-index: 0;
+}
+
+.user-section {
+  position: relative;
+  z-index: 1;
+  padding: 40rpx 30rpx 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+  margin-bottom: 20rpx;
+}
+
+.avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f0e5 0%, #e8e0d0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-icon {
+  font-size: 64rpx;
+}
+
+.user-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.user-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.login-btn {
+  padding: 16rpx 32rpx;
+  background: linear-gradient(135deg, #f7d794 0%, #e6a23c 100%);
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 12rpx rgba(230, 162, 60, 0.3);
+}
+
+.login-text {
+  font-size: 26rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.orders-section {
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.orders-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.orders-more {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.more-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.more-arrow {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.orders-grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.order-icon-badge {
+  position: relative;
+}
+
+.order-icon {
+  font-size: 48rpx;
+}
+
+.order-name {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.features-section {
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.features-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.feature-icon-wrapper {
+  position: relative;
+  margin-right: 24rpx;
+}
+
+.feature-icon {
+  font-size: 48rpx;
+}
+
+.feature-badge {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  background-color: #ff5722;
+  border-radius: 16rpx;
+  color: #fff;
+  font-size: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6rpx;
+}
+
+.feature-name {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+.phone-section {
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.phone-icon {
+  font-size: 40rpx;
+}
+
+.phone-number {
+  font-size: 32rpx;
+  color: #333;
+  letter-spacing: 2rpx;
+}
+
+.logout-btn {
+  width: 100%;
+  height: 90rpx;
+  border: 2rpx solid #8B6914;
+  border-radius: 45rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.logout-text {
+  font-size: 28rpx;
+  color: #8B6914;
+}
+
+.brand-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0 60rpx;
+}
+
+.brand-logo {
+  width: 200rpx;
+  height: 60rpx;
+  opacity: 0.5;
+  margin-bottom: 12rpx;
+}
+
+.brand-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.contact-buttons {
+  position: fixed;
+  right: 30rpx;
+  bottom: 200rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  z-index: 100;
+}
+
+.contact-btn {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.15);
+}
+
+.contact-btn.wechat {
+  background-color: #07c160;
+}
+
+.contact-icon {
+  font-size: 44rpx;
+}

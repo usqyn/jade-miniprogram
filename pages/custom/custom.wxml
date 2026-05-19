@@ -1,0 +1,93 @@
+<scroll-view scroll-y class="container" style="height: 100vh;">
+  <view class="banner">
+    <image class="banner-image" src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80" mode="aspectFill" />
+    <view class="banner-text">
+      <text class="banner-title">蓝田玉手镯</text>
+      <text class="banner-sub">触之凝脂·佩之雅致</text>
+    </view>
+  </view>
+
+  <view class="form-section">
+    <view class="section-header">
+      <text class="section-icon">🏔️</text>
+      <text class="section-title">专属定制</text>
+      <text class="section-subtitle">为你专属打造</text>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>姓名</text>
+      </view>
+      <input class="form-input" placeholder="请输入您的姓名" value="{{name}}" bindinput="onNameInput" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>电话</text>
+      </view>
+      <input class="form-input" type="number" placeholder="请输入您的电话" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>材质</text>
+      </view>
+      <view class="options-grid">
+        <view 
+          class="option-item {{selectedMaterial === item.id ? 'active' : ''}}" 
+          wx:for="{{materials}}" 
+          wx:key="id"
+          bindtap="selectMaterial"
+          data-id="{{item.id}}"
+        >
+          <view class="option-radio">
+            <view wx:if="{{selectedMaterial === item.id}}" class="radio-selected"></view>
+          </view>
+          <text class="option-text">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>目标用途</text>
+      </view>
+      <view class="options-grid">
+        <view 
+          class="option-item {{selectedPurpose === item.id ? 'active' : ''}}" 
+          wx:for="{{purposes}}" 
+          wx:key="id"
+          bindtap="selectPurpose"
+          data-id="{{item.id}}"
+        >
+          <view class="option-radio">
+            <view wx:if="{{selectedPurpose === item.id}}" class="radio-selected"></view>
+          </view>
+          <text class="option-text">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="submit-btn" bindtap="submitForm">
+      <text class="submit-text">提交</text>
+    </view>
+  </view>
+
+  <view style="height: 160rpx;"></view>
+</scroll-view>
+
+<view class="contact-buttons">
+  <view class="contact-btn">
+    <text class="contact-icon">↗</text>
+  </view>
+  <view class="contact-btn" bindtap="makePhoneCall">
+    <text class="contact-icon">📞</text>
+  </view>
+  <view class="contact-btn wechat">
+    <text class="contact-icon">💬</text>
+  </view>
+</view>

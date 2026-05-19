@@ -1,0 +1,18 @@
+{
+  "description": "玉石订购小程序",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.19.4",
+  "appid": "touristappid",
+  "projectname": "玉石订购小程序",
+  "condition": {}
+}
