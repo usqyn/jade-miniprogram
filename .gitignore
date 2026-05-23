@@ -19,3 +19,6 @@ build/
 
 # WeChat specific
 project.config.json.local
+
+# Zip files (not source files)
+*.zip
