@@ -1,1456 +1,1363 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玉石文玩小程序 - 作品集预览</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-        
-        .phone-frame {
-            width: 375px;
-            height: 812px;
-            background: #000;
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-        }
-        
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: #f5f5f5;
-            border-radius: 30px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .page-title {
-            text-align: center;
-            color: white;
-            margin-top: 15px;
-            font-size: 18px;
-            font-weight: 600;
-        }
-        
-        /* 微信小程序通用样式 */
-        .mini-page {
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
-            background: #f5f5f5;
-        }
-        
-        /* Navbar */
-        .navbar {
-            background: #fff;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .navbar-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        /* TabBar */
-        .tabbar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            display: flex;
-            padding: 8px 0;
-            padding-bottom: 20px;
-            border-top: 1px solid #eee;
-            z-index: 200;
-        }
-        
-        .tab-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 20px;
-            color: #999;
-        }
-        
-        .tab-item.active {
-            color: #8B6914;
-        }
-        
-        .tab-text {
-            font-size: 10px;
-            margin-top: 2px;
-        }
-        
-        /* Contact Buttons */
-        .contact-buttons {
-            position: absolute;
-            right: 15px;
-            bottom: 120px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 150;
-        }
-        
-        .contact-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
-        
-        .contact-btn.wechat {
-            background: #07c160;
-        }
-        
-        /* 首页样式 */
-        .banner-swiper {
-            width: 100%;
-            height: 240px;
-            position: relative;
-        }
-        
-        .banner-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .banner-overlay {
-            position: absolute;
-            left: 20px;
-            bottom: 30px;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        
-        .banner-title {
-            font-size: 24px;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        .banner-sub {
-            font-size: 16px;
-            display: block;
-            margin-bottom: 6px;
-            opacity: 0.9;
-        }
-        
-        .banner-desc {
-            font-size: 13px;
-            display: block;
-            margin-bottom: 12px;
-            opacity: 0.8;
-        }
-        
-        .banner-btn {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 20px;
-            font-size: 13px;
-        }
-        
-        .care-tip {
-        display: flex;
-        align-items: center;
-        padding: 12px 15px;
-        background: white;
-        margin: 10px 15px;
-        border-radius: 8px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>玉石文玩小程序 - 作品集预览</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .care-icon {
-            font-size: 18px;
-            margin-right: 8px;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
 
-        .feature-section {
-            display: flex;
-            padding: 0 15px;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
 
-        .feature-item {
-            flex: 1;
-            background: white;
-            padding: 12px 8px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
 
-        .feature-icon {
-            font-size: 22px;
-            margin-bottom: 6px;
-        }
+.header p {
+    font-size: 16px;
+    opacity: 0.9;
+}
 
-        .feature-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 3px;
-        }
+.preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1600px;
+    margin: 0 auto;
+}
 
-        .feature-desc {
-            font-size: 10px;
-            color: #999;
-        }
-        
-        /* 产品分类 */
-        .product-types-section {
-            background: #fff;
-            padding: 15px 0;
-            margin-bottom: 10px;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 15px 10px;
-        }
-        
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            position: relative;
-            padding-left: 12px;
-        }
-        
-        .section-title::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 18px;
-            background: linear-gradient(180deg, #8B6914 0%, #D4AF37 100%);
-            border-radius: 2px;
-        }
+.phone-frame {
+    width: 375px;
+    height: 812px;
+    background: #000;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
 
-        .section-more {
-            display: flex;
-            align-items: center;
-            font-size: 13px;
-            color: #999;
-        }
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+}
 
-        .more-arrow {
-            margin-left: 4px;
-        }
+.page-title {
+    text-align: center;
+    color: white;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
 
-        .types-scroll {
-            white-space: nowrap;
-            padding: 0 15px;
-        }
-        
-        .types-list {
-            display: inline-flex;
-            gap: 10px;
-        }
-        
-        .type-item {
-            width: 90px;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #f8f8f8;
-        }
-        
-        .type-image {
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-        }
-        
-        .type-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            text-align: center;
-            padding: 6px 0 2px;
-        }
-        
-        .type-name-en {
-            font-size: 10px;
-            color: #999;
-            text-align: center;
-            padding-bottom: 6px;
-        }
-        
-        /* Scroll Section */
-        .scroll-section {
-            display: flex;
-            gap: 10px;
-            padding: 0 15px;
-            margin-bottom: 10px;
-        }
-        
-        .scroll-card {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .scroll-left {
-            background: linear-gradient(135deg, #f5e6c8 0%, #e8d5a8 100%);
-        }
-        
-        .scroll-right {
-            background: linear-gradient(135deg, #3d3d3d 0%, #1a1a1a 100%);
-        }
-        
-        .scroll-right .scroll-title,
-        .scroll-right .scroll-sub {
-            color: white;
-        }
-        
-        .scroll-right .scroll-btn {
-            color: #D4AF37;
-        }
-        
-        .scroll-icon {
-            font-size: 20px;
-            margin-bottom: 6px;
-        }
-        
-        .scroll-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #8B6914;
-            margin-bottom: 4px;
-        }
-        
-        .scroll-sub {
-            font-size: 11px;
-            color: #8B6914;
-            opacity: 0.8;
-            line-height: 1.5;
-            margin-bottom: 8px;
-        }
-        
-        .scroll-btn {
-            font-size: 12px;
-            color: #8B6914;
-        }
-        
-        /* Nav Section */
-        .nav-section {
-            background: white;
-            padding: 15px 0;
-            margin-bottom: 10px;
-        }
-        
-        .nav-scroll {
-            white-space: nowrap;
-            padding: 0 15px;
-        }
-        
-        .nav-list {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 60px;
-        }
-        
-        .nav-icon {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
-        
-        .nav-name {
-            font-size: 12px;
-            color: #666;
-            margin-top: 6px;
-        }
-        
-        /* Product Section */
-        .product-section {
-            padding-bottom: 10px;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 0 15px;
-        }
-        
-        .product-item {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-        
-        .product-info {
-            padding: 10px;
-        }
-        
-        .product-name {
-            font-size: 14px;
-            color: #333;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
-        .product-price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 6px;
-        }
-        
-        .product-price {
-            font-size: 16px;
-            font-weight: bold;
-            color: #8B6914;
-        }
-        
-        .product-orders {
-            font-size: 12px;
-            color: #999;
-        }
-        
-        /* 产品列表页 */
-        .search-section {
-            background: white;
-            padding: 15px;
-        }
-        
-        .search-box {
-            background: #f5f5f5;
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-        }
-        
-        .search-icon {
-            font-size: 18px;
-            margin-right: 10px;
-        }
-        
-        .search-input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            font-size: 14px;
-            outline: none;
-        }
-        
-        .category-scroll {
-            white-space: nowrap;
-            background: white;
-            padding: 10px 15px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .category-list {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .category-item {
-            padding: 6px 15px;
-            font-size: 14px;
-            color: #666;
-            position: relative;
-        }
-        
-        .category-item.active {
-            color: #333;
-            font-weight: 600;
-        }
-        
-        .category-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 3px;
-            background: #8B6914;
-            border-radius: 2px;
-        }
-        
-        .product-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-        }
-        
-        .cart-btn {
-            width: 35px;
-            height: 35px;
-            background: #8B6914;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-        
-        .cart-float {
-            position: absolute;
-            right: 20px;
-            bottom: 100px;
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 200;
-        }
-        
-        .cart-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff4d4f;
-            color: white;
-            font-size: 12px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            min-width: 18px;
-            text-align: center;
-        }
-        
-        /* 产品详情页 */
-        .image-swiper {
-            width: 100%;
-            height: 300px;
-        }
-        
-        .detail-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .product-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 15px;
-            background: white;
-        }
-        
-        .product-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            flex: 1;
-        }
-        
-        .share-btn {
-            width: 35px;
-            height: 35px;
-            background: #f5f5f5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-        
-        .product-price-section {
-            display: flex;
-            align-items: center;
-            padding: 0 15px 15px;
-            background: white;
-            gap: 15px;
-        }
-        
-        .product-price {
-            font-size: 24px;
-            font-weight: bold;
-            color: #8B6914;
-        }
-        
-        .product-orders {
-            font-size: 14px;
-            color: #999;
-        }
-        
-        .divider {
-            height: 10px;
-            background: #f5f5f5;
-        }
-        
-        .detail-section {
-            background: white;
-            padding: 20px 15px;
-        }
-        
-        .section-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .title-line {
-            width: 4px;
-            height: 18px;
-            background: #8B6914;
-            border-radius: 2px;
-            margin-right: 10px;
-        }
-        
-        .title-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .detail-text {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .brand-footer {
-            background: #f5f5f5;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .brand-logo {
-            height: 25px;
-            margin-bottom: 8px;
-            opacity: 0.5;
-        }
-        
-        .brand-text {
-            font-size: 12px;
-            color: #ccc;
-        }
-        
-        .bottom-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            padding: 10px 15px;
-            padding-bottom: 25px;
-            border-top: 1px solid #eee;
-            z-index: 200;
-        }
-        
-        .phone-btn {
-            width: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #333;
-        }
-        
-        .phone-text {
-            font-size: 12px;
-            margin-top: 2px;
-        }
-        
-        .reserve-btn {
-            flex: 1;
-            margin-left: 15px;
-            background: linear-gradient(135deg, #8B6914 0%, #6B4F0F 100%);
-            color: white;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        /* 个人定制页 */
-        .custom-banner {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #f5e6c8 0%, #e8d5a8 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: #8B6914;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .custom-form {
-            background: white;
-            margin: 15px;
-            padding: 20px;
-            border-radius: 12px;
-        }
-        
-        .form-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .form-subtitle {
-            font-size: 14px;
-            color: #8B6914;
-        }
-        
-        .form-item {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .required {
-            color: #ff4d4f;
-            margin-right: 4px;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            font-size: 14px;
-            background: #f5f5f5;
-        }
-        
-        .form-radio-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .radio-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 20px;
-            border: 1px solid #eee;
-            border-radius: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .radio-item.active {
-            border-color: #8B6914;
-            background: rgba(139, 105, 20, 0.1);
-            color: #8B6914;
-            font-weight: 500;
-        }
-        
-        .radio-circle {
-            width: 16px;
-            height: 16px;
-            border: 2px solid #ddd;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .radio-item.active .radio-circle {
-            border-color: #8B6914;
-        }
-        
-        .radio-dot {
-            width: 8px;
-            height: 8px;
-            background: #8B6914;
-            border-radius: 50%;
-            display: none;
-        }
-        
-        .radio-item.active .radio-dot {
-            display: block;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #8B6914 0%, #6B4F0F 100%);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-        
-        /* 关于我们页 */
-        .about-banner {
-            background: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        
-        .about-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .about-desc {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .why-section {
-            padding: 30px 15px;
-        }
-        
-        .why-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .why-title::before,
-        .why-title::after {
-            content: '⛰️';
-            margin: 0 10px;
-        }
-        
-        .why-list {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .why-item {
-            flex: 1;
-            background: white;
-            padding: 20px 15px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        
-        .why-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .why-text {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        
-        .why-desc {
-            font-size: 12px;
-            color: #999;
-            line-height: 1.5;
-        }
-        
-        .store-section {
-            background: white;
-            padding: 30px 15px;
-        }
-        
-        .store-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .store-title::before,
-        .store-title::after {
-            content: '⛰️';
-            margin: 0 10px;
-        }
-        
-        .store-card {
-            display: flex;
-            background: #f9f9f9;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        
-        .store-image {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-        }
-        
-        .store-info {
-            flex: 1;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .store-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .store-address {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .store-arrow {
-            width: 35px;
-            height: 35px;
-            background: #8B6914;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            align-self: center;
-            margin-right: 15px;
-        }
-        
-        /* 个人中心页 */
-        .profile-header {
-            background: linear-gradient(135deg, #f5e6c8 0%, #e8d5a8 100%);
-            padding: 40px 20px 25px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .avatar {
-            width: 70px;
-            height: 70px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin-right: 20px;
-        }
-        
-        .user-info {
-            flex: 1;
-        }
-        
-        .user-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        
-        .user-desc {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .login-btn {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #8B6914 0%, #D4AF37 100%);
-            color: white;
-            border-radius: 20px;
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(139, 105, 20, 0.3);
-        }
-        
-        .order-section {
-            background: white;
-            margin: 15px;
-            border-radius: 12px;
-            padding: 20px;
-        }
-        
-        .order-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .order-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .order-all {
-            font-size: 14px;
-            color: #999;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .order-nav {
-            display: flex;
-            justify-content: space-around;
-        }
-        
-        .order-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        
-        .order-icon {
-            font-size: 28px;
-            margin-bottom: 6px;
-        }
-        
-        .order-text {
-            font-size: 12px;
-            color: #666;
-        }
-        
-        .order-badge {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background: #ff4d4f;
-            color: white;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            min-width: 16px;
-            text-align: center;
-        }
-        
-        .function-section {
-            background: white;
-            margin: 0 15px 15px;
-            border-radius: 12px;
-            padding: 20px;
-        }
-        
-        .function-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        .function-list {
-            display: flex;
-            justify-content: space-around;
-        }
-        
-        .function-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        
-        .function-icon {
-            font-size: 28px;
-            margin-bottom: 6px;
-        }
-        
-        .function-text {
-            font-size: 12px;
-            color: #666;
-        }
-        
-        .function-badge {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background: #ff4d4f;
-            color: white;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            min-width: 16px;
-            text-align: center;
-        }
-        
-        .phone-section {
-            background: white;
-            margin: 0 15px;
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .phone-icon {
-            font-size: 24px;
-        }
-        
-        .phone-number {
-            flex: 1;
-            font-size: 18px;
-            color: #333;
-        }
-        
-        .logout-btn {
-            margin: 30px 15px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #333;
-            border-radius: 30px;
-            font-size: 16px;
-            color: #333;
-        }
-    </style>
+.mini-page {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: #f5f5f5;
+}
+
+.navbar {
+    background: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.navbar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.tabbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    display: flex;
+    padding: 8px 0;
+    padding-bottom: 20px;
+    border-top: 1px solid #eee;
+    z-index: 200;
+}
+
+.tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    color: #999;
+}
+
+.tab-item.active {
+    color: #8B6914;
+}
+
+.tab-text {
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.contact-buttons {
+    position: absolute;
+    right: 15px;
+    bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 150;
+}
+
+.contact-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.contact-btn.wechat {
+    background: #07c160;
+}
+
+.banner-swiper {
+    width: 100%;
+    height: 240px;
+    position: relative;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-overlay {
+    position: absolute;
+    left: 20px;
+    bottom: 30px;
+    color: white;
+    text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.3);
+}
+
+.banner-title {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.banner-sub {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 6px;
+    opacity: 0.9;
+}
+
+.banner-desc {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.banner-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.care-tip {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background: white;
+    margin: 10px 15px;
+    border-radius: 8px;
+}
+
+.care-icon {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.care-text {
+    font-size: 13px;
+    color: #333;
+}
+
+.feature-section {
+    display: flex;
+    padding: 0 15px;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.feature-item {
+    flex: 1;
+    background: white;
+    padding: 12px 8px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.feature-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.feature-desc {
+    font-size: 10px;
+    color: #999;
+}
+
+.product-types-section {
+    background: #fff;
+    padding: 15px 0;
+    margin-bottom: 10px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 10px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    padding-left: 12px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 18px;
+    background: linear-gradient(180deg, #8B6914 0%, #D4AF37 100%);
+    border-radius: 2px;
+}
+
+.section-more {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #999;
+}
+
+.more-arrow {
+    margin-left: 4px;
+}
+
+.types-scroll {
+    white-space: nowrap;
+    padding: 0 15px;
+}
+
+.types-list {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.type-item {
+    width: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+.type-image {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+}
+
+.type-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    padding: 6px 0 2px;
+}
+
+.type-name-en {
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+    padding-bottom: 6px;
+}
+
+.scroll-section {
+    display: flex;
+    gap: 10px;
+    padding: 0 15px;
+    margin-bottom: 10px;
+}
+
+.scroll-card {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.scroll-left {
+    background: linear-gradient(135deg, #f5e6c8 0%, #e8d5a8 100%);
+}
+
+.scroll-right {
+    background: linear-gradient(135deg, #3d3d3d 0%, #1a1a1a 100%);
+}
+
+.scroll-right .scroll-title,
+.scroll-right .scroll-sub {
+    color: white;
+}
+
+.scroll-right .scroll-btn {
+    color: #D4AF37;
+}
+
+.scroll-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.scroll-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8B6914;
+    margin-bottom: 4px;
+}
+
+.scroll-sub {
+    font-size: 11px;
+    color: #8B6914;
+    opacity: 0.8;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.scroll-btn {
+    font-size: 12px;
+    color: #8B6914;
+}
+
+.nav-section {
+    background: white;
+    padding: 15px 0;
+    margin-bottom: 10px;
+}
+
+.nav-scroll {
+    white-space: nowrap;
+    padding: 0 15px;
+}
+
+.nav-list {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.nav-icon {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.nav-name {
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+}
+
+.product-section {
+    padding-bottom: 10px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0 15px;
+}
+
+.product-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.product-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 10px;
+}
+
+.product-name {
+    font-size: 14px;
+    color: #333;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8B6914;
+}
+
+.product-orders {
+    font-size: 12px;
+    color: #999;
+}
+
+.search-section {
+    background: white;
+    padding: 15px;
+}
+
+.search-box {
+    background: #f5f5f5;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.search-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+}
+
+.category-scroll {
+    white-space: nowrap;
+    background: white;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.category-list {
+    display: flex;
+    gap: 20px;
+}
+
+.category-item {
+    padding: 6px 15px;
+    font-size: 14px;
+    color: #666;
+    position: relative;
+}
+
+.category-item.active {
+    color: #333;
+    font-weight: 600;
+}
+
+.category-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: #8B6914;
+    border-radius: 2px;
+}
+
+.product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.cart-btn {
+    width: 35px;
+    height: 35px;
+    background: #8B6914;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.cart-float {
+    position: absolute;
+    right: 20px;
+    bottom: 100px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 200;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4d4f;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.image-swiper {
+    width: 100%;
+    height: 300px;
+}
+
+.detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    background: white;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+}
+
+.share-btn {
+    width: 35px;
+    height: 35px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.product-price-section {
+    display: flex;
+    align-items: center;
+    padding: 0 15px 15px;
+    background: white;
+    gap: 15px;
+}
+
+.product-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8B6914;
+}
+
+.product-orders {
+    font-size: 14px;
+    color: #999;
+}
+
+.divider {
+    height: 10px;
+    background: #f5f5f5;
+}
+
+.detail-section {
+    background: white;
+    padding: 20px 15px;
+}
+
+.title-line {
+    width: 4px;
+    height: 18px;
+    background: #8B6914;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+.title-line {
+    display: inline-block;
+    vertical-align: middle;
+    width: 4px;
+    height: 18px;
+    background: #8B6914;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+.title-text {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.detail-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+.brand-footer {
+    background: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.brand-logo {
+    height: 25px;
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+.brand-text {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: flex;
+    padding: 10px 15px;
+    padding-bottom: 25px;
+    border-top: 1px solid #eee;
+    z-index: 200;
+}
+
+.phone-btn {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #333;
+}
+
+.phone-text {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.reserve-btn {
+    flex: 1;
+    margin-left: 15px;
+    background: linear-gradient(135deg, #8B6914 0%, #6B4F0F 100%);
+    color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.custom-banner {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #f5e6c8 0%, #e8d5a8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #8B6914;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.custom-form {
+    background: white;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.form-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-subtitle {
+    font-size: 14px;
+    color: #8B6914;
+}
+
+.form-item {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.required {
+    color: #ff4d4f;
+    margin-right: 4px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #f5f5f5;
+}
+
+.form-radio-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.radio-item.active {
+    border-color: #8B6914;
+    background: rgba(139, 105, 20, 0.1);
+    color: #8B6914;
+    font-weight: 500;
+}
+
+.radio-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio-item.active .radio-circle {
+    border-color: #8B6914;
+}
+
+.radio-dot {
+    width: 8px;
+    height: 8px;
+    background: #8B6914;
+    border-radius: 50%;
+    display: none;
+}
+
+.radio-item.active .radio-dot {
+    display: block;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #8B6914 0%, #6B4F0F 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.about-banner {
+    background: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.about-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.why-section {
+    padding: 30px 15px;
+}
+
+.why-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.why-title::before,
+.why-title::after {
+    content: '⛰️';
+    margin: 0 10px;
+}
+
+.why-list {
+    display: flex;
+    gap: 15px;
+}
+
+.why-item {
+    flex: 1;
+    background: white;
+    padding: 20px 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.why-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.why-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.why-desc {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.5;
+}
+
+.store-section {
+    background: white;
+    padding: 30px 15px;
+}
+
+.store-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.store-title::before,
+.store-title::after {
+    content: '⛰️';
+    margin: 0 10px;
+}
+
+.store-card {
+    display: flex;
+    background: #f9f9f9;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.store-image {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.store-info {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.store-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.store-address {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.store-arrow {
+    width: 35px;
+    height: 35px;
+    background: #8B6914;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    align-self: center;
+    margin-right: 15px;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #f5e6c8 0%, #e8d5a8 100%);
+    padding: 40px 20px 25px;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-right: 20px;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.user-desc {
+    font-size: 14px;
+    color: #666;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #8B6914 0%, #D4AF37 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(139, 105, 20, 0.3);
+}
+
+.order-section {
+    background: white;
+    margin: 15px;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.order-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.order-all {
+    font-size: 14px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.order-nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.order-icon {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.order-text {
+    font-size: 12px;
+    color: #666;
+}
+
+.order-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #ff4d4f;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+}
+
+.function-section {
+    background: white;
+    margin: 0 15px 15px;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.function-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.function-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.function-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.function-icon {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.function-text {
+    font-size: 12px;
+    color: #666;
+}
+
+.function-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #ff4d4f;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+}
+
+.phone-section {
+    background: white;
+    margin: 0 15px;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.phone-icon {
+    font-size: 24px;
+}
+
+.phone-number {
+    flex: 1;
+    font-size: 18px;
+    color: #333;
+}
+
+.logout-btn {
+    margin: 30px 15px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #333;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #333;
+}
+</style>
 </head>
 <body>
-    <div class="header">
-        <h1>玉石文玩小程序 - 作品集预览</h1>
-        <p>Jade & Antique Mini Program Portfolio</p>
-        <p style="margin-top: 10px; font-size: 14px;">👆 点击右上角「查看全部」或按F12打开开发者工具截图</p>
-    </div>
+<div class="header">
+    <h1>玉石文玩小程序 - 作品集预览</h1>
+    <p>Jade & Antique Mini Program Portfolio</p>
+    <p style="margin-top: 10px; font-size: 14px;">👆 点击右上角「查看全部」或按F12打开开发者工具截图</p>
+</div>
 
-    <div class="preview-container">
-        <!-- 首页 -->
-        <div>
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <div class="mini-page">
-                        <!-- Navbar -->
-                        <div class="navbar">
-                            <div class="navbar-title">文玩官网</div>
+<div class="preview-container">
+    <!-- 1. 首页 -->
+    <div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="mini-page">
+                    <div class="navbar">
+                        <div class="navbar-title">文玩官网</div>
+                    </div>
+
+                    <div class="banner-swiper">
+                        <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80" class="banner-image" alt="Banner" />
+                        <div class="banner-overlay">
+                            <span class="banner-title">东方美玉 · 传承千年</span>
+                            <span class="banner-sub">温润如玉 品味非凡</span>
+                            <span class="banner-desc">精选天然翡翠 · 匠心雕琢</span>
+                            <div class="banner-btn">探索更多</div>
                         </div>
+                    </div>
 
-                        <!-- Banner Swiper -->
-                        <div class="banner-swiper">
-                            <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80" class="banner-image" alt="Banner" />
-                            <div class="banner-overlay">
-                                <span class="banner-title">东方美玉 · 传承千年</span>
-                                <span class="banner-sub">温润如玉 品味非凡</span>
-                                <span class="banner-desc">精选天然翡翠 · 匠心雕琢</span>
-                                <div class="banner-btn">探索更多</div>
-                            </div>
+                    <div class="care-tip">
+                        <span class="care-icon">🔊</span>
+                        <span class="care-text">【保养指南】日常用软布擦拭即可保持温润，收藏更持久</span>
+                    </div>
+
+                    <div class="feature-section">
+                        <div class="feature-item">
+                            <span class="feature-icon">🛡️</span>
+                            <span class="feature-title">天然A货</span>
+                            <span class="feature-desc">权威鉴定</span>
                         </div>
-
-                        <!-- Care Tip -->
-                        <div class="care-tip">
-                            <span class="care-icon">🔊</span>
-                            <span class="care-text">【保养指南】日常用软布擦拭即可保持温润，收藏更持久</span>
+                        <div class="feature-item">
+                            <span class="feature-icon">💎</span>
+                            <span class="feature-title">匠心工艺</span>
+                            <span class="feature-desc">大师雕琢</span>
                         </div>
-
-                        <!-- Feature Section -->
-                        <div class="feature-section">
-                            <div class="feature-item">
-                                <span class="feature-icon">🛡️</span>
-                                <span class="feature-title">天然A货</span>
-                                <span class="feature-desc">权威鉴定</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">💎</span>
-                                <span class="feature-title">匠心工艺</span>
-                                <span class="feature-desc">大师雕琢</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">🎁</span>
-                                <span class="feature-title">精美礼盒</span>
-                                <span class="feature-desc">品质包装</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">🎧</span>
-                                <span class="feature-title">贴心服务</span>
-                                <span class="feature-desc">专业客服</span>
-                            </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎁</span>
+                            <span class="feature-title">精美礼盒</span>
+                            <span class="feature-desc">品质包装</span>
                         </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎧</span>
+                            <span class="feature-title">贴心服务</span>
+                            <span class="feature-desc">专业客服</span>
+                        </div>
+                    </div>
 
-                        <!-- Product Types -->
-                        <div class="product-types-section">
-                            <div class="section-header">
-                                <span class="section-title">产品分类</span>
-                            </div>
-                            <div class="types-scroll">
-                                <div class="types-list">
-                                    <div class="type-item">
-                                        <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=300&q=80" class="type-image" alt="手镯" />
-                                        <span class="type-name">手镯</span>
-                                        <span class="type-name-en">BRACELET</span>
-                                    </div>
-                                    <div class="type-item">
-                                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80" class="type-image" alt="吊坠" />
-                                        <span class="type-name">吊坠</span>
-                                        <span class="type-name-en">PENDANT</span>
-                                    </div>
-                                    <div class="type-item">
-                                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&q=80" class="type-image" alt="戒指" />
-                                        <span class="type-name">戒指</span>
-                                        <span class="type-name-en">RING</span>
-                                    </div>
-                                    <div class="type-item">
-                                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&q=80" class="type-image" alt="耳饰" />
-                                        <span class="type-name">耳饰</span>
-                                        <span class="type-name-en">EARRINGS</span>
-                                    </div>
-                                    <div class="type-item">
-                                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80" class="type-image" alt="摆件" />
-                                        <span class="type-name">摆件</span>
-                                        <span class="type-name-en">ORNAMENTS</span>
-                                    </div>
+                    <div class="product-types-section">
+                        <div class="section-header">
+                            <span class="section-title">产品分类</span>
+                        </div>
+                        <div class="types-scroll">
+                            <div class="types-list">
+                                <div class="type-item">
+                                    <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=300&q=80" class="type-image" alt="手镯" />
+                                    <span class="type-name">手镯</span>
+                                    <span class="type-name-en">BRACELET</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Scroll Section -->
-                        <div class="scroll-section">
-                            <div class="scroll-card scroll-left">
-                                <span class="scroll-icon">🔮</span>
-                                <div class="scroll-content">
-                                    <span class="scroll-title">平安扣</span>
-                                    <span class="scroll-sub">平安相伴 顺遂如意</span>
+                                <div class="type-item">
+                                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80" class="type-image" alt="吊坠" />
+                                    <span class="type-name">吊坠</span>
+                                    <span class="type-name-en">PENDANT</span>
                                 </div>
-                                <span class="scroll-btn">立即选购 →</span>
-                            </div>
-                            <div class="scroll-card scroll-right">
-                                <span class="scroll-icon">✂️</span>
-                                <div class="scroll-content">
-                                    <span class="scroll-title">匠心工艺</span>
-                                    <span class="scroll-sub">每一件作品都是匠心与时间的结晶</span>
+                                <div class="type-item">
+                                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&q=80" class="type-image" alt="戒指" />
+                                    <span class="type-name">戒指</span>
+                                    <span class="type-name-en">RING</span>
                                 </div>
-                                <span class="scroll-btn">了解更多 →</span>
-                            </div>
-                        </div>
-
-                        <!-- Nav Section -->
-                        <div class="nav-section">
-                            <div class="section-header">
-                                <span class="section-title">品类导航</span>
-                            </div>
-                            <div class="nav-scroll">
-                                <div class="nav-list">
-                                    <div class="nav-item">
-                                        <div class="nav-icon">💎</div>
-                                        <span class="nav-name">玉石类</span>
-                                    </div>
-                                    <div class="nav-item">
-                                        <div class="nav-icon">🪵</div>
-                                        <span class="nav-name">木制类</span>
-                                    </div>
-                                    <div class="nav-item">
-                                        <div class="nav-icon">💠</div>
-                                        <span class="nav-name">宝石类</span>
-                                    </div>
-                                    <div class="nav-item">
-                                        <div class="nav-icon">🥜</div>
-                                        <span class="nav-name">果核类</span>
-                                    </div>
+                                <div class="type-item">
+                                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&q=80" class="type-image" alt="耳饰" />
+                                    <span class="type-name">耳饰</span>
+                                    <span class="type-name-en">EARRINGS</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Section -->
-                        <div class="product-section">
-                            <div class="section-header">
-                                <span class="section-title">新品上新</span>
-                                <div class="section-more">
-                                    <span class="more-text">查看全部</span>
-                                    <span class="more-arrow">→</span>
+                                <div class="type-item">
+                                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80" class="type-image" alt="摆件" />
+                                    <span class="type-name">摆件</span>
+                                    <span class="type-name-en">ORNAMENTS</span>
                                 </div>
-                            </div>
-                            <div class="product-grid">
-                                <div class="product-item">
-                                    <img src="https://images.unsplash.com/photo-1612815338314-a61e8ef07cb2?w=400&q=80" class="product-image" alt="产品" />
-                                    <div class="product-info">
-                                        <span class="product-name">海南黄花梨鬼脸对牌</span>
-                                        <div class="product-price-row">
-                                            <span class="product-price">¥148</span>
-                                            <span class="product-orders">已预订: 0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" class="product-image" alt="产品" />
-                                    <div class="product-info">
-                                        <span class="product-name">碧玺耳环</span>
-                                        <div class="product-price-row">
-                                            <span class="product-price">¥236</span>
-                                            <span class="product-orders">已预订: 0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="height: 80px;"></div>
-
-                        <!-- Contact Buttons -->
-                        <div class="contact-buttons">
-                            <div class="contact-btn">↗</div>
-                            <div class="contact-btn">📞</div>
-                            <div class="contact-btn wechat">💬</div>
-                        </div>
-
-                        <!-- TabBar -->
-                        <div class="tabbar">
-                            <div class="tab-item active">
-                                <span>🏠</span>
-                                <span class="tab-text">首页</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>📦</span>
-                                <span class="tab-text">个人定制</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>🏛️</span>
-                                <span class="tab-text">关于我们</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>👤</span>
-                                <span class="tab-text">我的</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="page-title">1. 首页</div>
-        </div>
 
-        <!-- 产品列表页 -->
-        <div>
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <div class="mini-page">
-                        <div class="navbar">
-                            <div class="navbar-title">全部产品</div>
+                    <div class="scroll-section">
+                        <div class="scroll-card scroll-left">
+                            <span class="scroll-icon">🔮</span>
+                            <div class="scroll-content">
+                                <span class="scroll-title">平安扣</span>
+                                <span class="scroll-sub">平安相伴 顺遂如意</span>
+                            </div>
+                            <span class="scroll-btn">立即选购 →</span>
                         </div>
+                        <div class="scroll-card scroll-right">
+                            <span class="scroll-icon">✂️</span>
+                            <div class="scroll-content">
+                                <span class="scroll-title">匠心工艺</span>
+                                <span class="scroll-sub">每一件作品都是匠心与时间的结晶</span>
+                            </div>
+                            <span class="scroll-btn">了解更多 →</span>
+                        </div>
+                    </div>
 
-                        <div class="search-section">
-                            <div class="search-box">
-                                <span class="search-icon">🔍</span>
-                                <input class="search-input" placeholder="请输入商品名称" />
+                    <div class="nav-section">
+                        <div class="section-header">
+                            <span class="section-title">品类导航</span>
+                        </div>
+                        <div class="nav-scroll">
+                            <div class="nav-list">
+                                <div class="nav-item">
+                                    <div class="nav-icon">💎</div>
+                                    <span class="nav-name">玉石类</span>
+                                </div>
+                                <div class="nav-item">
+                                    <div class="nav-icon">🪵</div>
+                                    <span class="nav-name">木制类</span>
+                                </div>
+                                <div class="nav-item">
+                                    <div class="nav-icon">💠</div>
+                                    <span class="nav-name">宝石类</span>
+                                </div>
+                                <div class="nav-item">
+                                    <div class="nav-icon">🥜</div>
+                                    <span class="nav-name">果核类</span>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="category-scroll">
-                            <div class="category-list">
-                                <div class="category-item active">全部</div>
-                                <div class="category-item">玉石类</div>
-                                <div class="category-item">木制类</div>
-                                <div class="category-item">宝石类</div>
-                                <div class="category-item">果核类</div>
+                    <div class="product-section">
+                        <div class="section-header">
+                            <span class="section-title">新品上新</span>
+                            <div class="section-more">
+                                <span class="more-text">查看全部</span>
+                                <span class="more-arrow">→</span>
                             </div>
                         </div>
-
                         <div class="product-grid">
                             <div class="product-item">
                                 <img src="https://images.unsplash.com/photo-1612815338314-a61e8ef07cb2?w=400&q=80" class="product-image" alt="产品" />
                                 <div class="product-info">
                                     <span class="product-name">海南黄花梨鬼脸对牌</span>
-                                    <div class="product-bottom">
+                                    <div class="product-price-row">
                                         <span class="product-price">¥148</span>
-                                        <div class="cart-btn">🛒</div>
+                                        <span class="product-orders">已预订: 0</span>
                                     </div>
                                 </div>
                             </div>
@@ -1458,446 +1365,525 @@
                                 <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" class="product-image" alt="产品" />
                                 <div class="product-info">
                                     <span class="product-name">碧玺耳环</span>
-                                    <div class="product-bottom">
+                                    <div class="product-price-row">
                                         <span class="product-price">¥236</span>
-                                        <div class="cart-btn">🛒</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" class="product-image" alt="产品" />
-                                <div class="product-info">
-                                    <span class="product-name">和田玉挂件</span>
-                                    <div class="product-bottom">
-                                        <span class="product-price">¥588</span>
-                                        <div class="cart-btn">🛒</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&q=80" class="product-image" alt="产品" />
-                                <div class="product-info">
-                                    <span class="product-name">橄榄核雕手串</span>
-                                    <div class="product-bottom">
-                                        <span class="product-price">¥168</span>
-                                        <div class="cart-btn">🛒</div>
+                                        <span class="product-orders">已预订: 0</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div style="height: 80px;"></div>
+                    <div style="height: 80px;"></div>
 
-                        <div class="cart-float">
-                            🛒
-                            <div class="cart-badge">3</div>
+                    <div class="contact-buttons">
+                        <div class="contact-btn">↗</div>
+                        <div class="contact-btn">📞</div>
+                        <div class="contact-btn wechat">💬</div>
+                    </div>
+
+                    <div class="tabbar">
+                        <div class="tab-item active">
+                            <span>🏠</span>
+                            <span class="tab-text">首页</span>
                         </div>
-
-                        <div class="tabbar">
-                            <div class="tab-item">
-                                <span>🏠</span>
-                                <span class="tab-text">首页</span>
-                            </div>
-                            <div class="tab-item active">
-                                <span>📦</span>
-                                <span class="tab-text">个人定制</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>🏛️</span>
-                                <span class="tab-text">关于我们</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>👤</span>
-                                <span class="tab-text">我的</span>
-                            </div>
+                        <div class="tab-item">
+                            <span>📦</span>
+                            <span class="tab-text">个人定制</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>🏛️</span>
+                            <span class="tab-text">关于我们</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>👤</span>
+                            <span class="tab-text">我的</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="page-title">2. 产品列表页</div>
         </div>
-
-        <!-- 产品详情页 -->
-        <div>
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <div class="mini-page">
-                        <div class="image-swiper">
-                            <img src="https://images.unsplash.com/photo-1612815338314-a61e8ef07cb2?w=800&q=80" class="detail-image" alt="产品" />
-                        </div>
-
-                        <div class="product-header">
-                            <div class="product-name">海南黄花梨鬼脸对牌</div>
-                            <div class="share-btn">↗</div>
-                        </div>
-
-                        <div class="product-price-section">
-                            <span class="product-price">¥148</span>
-                            <span class="product-orders">已预订: 0</span>
-                        </div>
-
-                        <div class="divider"></div>
-
-                        <div class="detail-section">
-                            <div class="section-title">
-                                <div class="title-line"></div>
-                                <span class="title-text">服务详情</span>
-                            </div>
-                            <div class="detail-text">
-                                精选上等天然材质，经传统工艺匠心打造，质地温润细腻，色泽醇厚包浆，兼具收藏与把玩价值。其造型古朴雅致，线条流畅自然，细节刻画生动，无论是日常盘玩还是案头陈设，都能彰显主人的文化品位。随着时间推移，器物表面会逐渐形成莹润的包浆，愈显岁月沉淀之美，是传承文化、修身养性的优质之选。
-                            </div>
-                        </div>
-
-                        <div class="brand-footer">
-                            <img class="brand-logo" src="https://via.placeholder.com/100x40?text=Brand" alt="Brand" />
-                            <span class="brand-text">由凡科轻站提供技术支持</span>
-                        </div>
-
-                        <div style="height: 80px;"></div>
-
-                        <div class="contact-buttons">
-                            <div class="contact-btn">↗</div>
-                            <div class="contact-btn">📞</div>
-                            <div class="contact-btn wechat">💬</div>
-                        </div>
-
-                        <div class="bottom-bar">
-                            <div class="phone-btn">
-                                <span class="phone-icon">📞</span>
-                                <span class="phone-text">电话</span>
-                            </div>
-                            <div class="reserve-btn">立即预订</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="page-title">3. 产品详情页</div>
-        </div>
-
-        <!-- 个人定制页 -->
-        <div>
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <div class="mini-page">
-                        <div class="navbar">
-                            <div class="navbar-title">个人定制</div>
-                        </div>
-
-                        <div class="custom-banner">
-                            蓝田玉手镯
-                        </div>
-
-                        <div class="custom-form">
-                            <div class="form-title">
-                                ⛰️ 专属定制
-                                <span class="form-subtitle">为您专属打造</span>
-                            </div>
-
-                            <div class="form-item">
-                                <label class="form-label">
-                                    <span class="required">*</span>姓名
-                                </label>
-                                <input class="form-input" placeholder="请输入您的姓名" />
-                            </div>
-
-                            <div class="form-item">
-                                <label class="form-label">
-                                    <span class="required">*</span>电话
-                                </label>
-                                <input class="form-input" placeholder="请输入您的手机号" />
-                            </div>
-
-                            <div class="form-item">
-                                <label class="form-label">
-                                    <span class="required">*</span>材质
-                                </label>
-                                <div class="form-radio-group">
-                                    <div class="radio-item active">
-                                        <div class="radio-circle">
-                                            <div class="radio-dot"></div>
-                                        </div>
-                                        <span>玉石类</span>
-                                    </div>
-                                    <div class="radio-item">
-                                        <div class="radio-circle">
-                                            <div class="radio-dot"></div>
-                                        </div>
-                                        <span>木制类</span>
-                                    </div>
-                                    <div class="radio-item">
-                                        <div class="radio-circle">
-                                            <div class="radio-dot"></div>
-                                        </div>
-                                        <span>宝石类</span>
-                                    </div>
-                                    <div class="radio-item">
-                                        <div class="radio-circle">
-                                            <div class="radio-dot"></div>
-                                        </div>
-                                        <span>果核类</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-item">
-                                <label class="form-label">
-                                    <span class="required">*</span>目标用途
-                                </label>
-                                <div class="form-radio-group">
-                                    <div class="radio-item active">
-                                        <div class="radio-circle">
-                                            <div class="radio-dot"></div>
-                                        </div>
-                                        <span>个人佩戴</span>
-                                    </div>
-                                    <div class="radio-item">
-                                        <div class="radio-circle">
-                                            <div class="radio-dot"></div>
-                                        </div>
-                                        <span>收藏</span>
-                                    </div>
-                                    <div class="radio-item">
-                                        <div class="radio-circle">
-                                            <div class="radio-dot"></div>
-                                        </div>
-                                        <span>礼赠</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button class="submit-btn">提交定制需求</button>
-                        </div>
-
-                        <div style="height: 80px;"></div>
-
-                        <div class="contact-buttons">
-                            <div class="contact-btn">↗</div>
-                            <div class="contact-btn">📞</div>
-                            <div class="contact-btn wechat">💬</div>
-                        </div>
-
-                        <div class="tabbar">
-                            <div class="tab-item">
-                                <span>🏠</span>
-                                <span class="tab-text">首页</span>
-                            </div>
-                            <div class="tab-item active">
-                                <span>📦</span>
-                                <span class="tab-text">个人定制</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>🏛️</span>
-                                <span class="tab-text">关于我们</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>👤</span>
-                                <span class="tab-text">我的</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="page-title">4. 个人定制页</div>
-        </div>
-
-        <!-- 关于我们页 -->
-        <div>
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <div class="mini-page">
-                        <div class="navbar">
-                            <div class="navbar-title">关于我们</div>
-                        </div>
-
-                        <div class="about-banner">
-                            <div class="about-title">文玩官网</div>
-                            <div class="about-desc">
-                                我们致力于传承和发扬中华文玩文化，<br/>
-                                精选优质天然材质，结合传统工艺与现代审美，<br/>
-                                为您提供品质卓越的文玩珍品。<br/>
-                                同时提供个性定制、鉴赏评估、养护等专业咨询服务。
-                            </div>
-                        </div>
-
-                        <div class="why-section">
-                            <div class="why-title">为什么选择我们？</div>
-                            <div class="why-list">
-                                <div class="why-item">
-                                    <div class="why-icon">💎</div>
-                                    <div class="why-text">品质甄选</div>
-                                    <div class="why-desc">坚持源头严选+专业鉴定双重标准</div>
-                                </div>
-                                <div class="why-item">
-                                    <div class="why-icon">🏭</div>
-                                    <div class="why-text">全阶适配</div>
-                                    <div class="why-desc">限量手作，按需匹配</div>
-                                </div>
-                                <div class="why-item">
-                                    <div class="why-icon">💝</div>
-                                    <div class="why-text">贴心服务</div>
-                                    <div class="why-desc">支持专属定制+购后提供养护技巧</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="store-section">
-                            <div class="store-title">线下门店</div>
-                            <div class="store-card">
-                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" class="store-image" alt="门店" />
-                                <div class="store-info">
-                                    <div class="store-name">XXX文玩海珠店</div>
-                                    <div class="store-address">
-                                        <span>📍</span>
-                                        <span>广州市工业大道</span>
-                                    </div>
-                                </div>
-                                <div class="store-arrow">→</div>
-                            </div>
-                            <div class="store-card">
-                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" class="store-image" alt="门店" />
-                                <div class="store-info">
-                                    <div class="store-name">XXX文玩天河店</div>
-                                    <div class="store-address">
-                                        <span>📍</span>
-                                        <span>广州市天河路</span>
-                                    </div>
-                                </div>
-                                <div class="store-arrow">→</div>
-                            </div>
-                        </div>
-
-                        <div style="height: 80px;"></div>
-
-                        <div class="contact-buttons">
-                            <div class="contact-btn">↗</div>
-                            <div class="contact-btn">📞</div>
-                            <div class="contact-btn wechat">💬</div>
-                        </div>
-
-                        <div class="tabbar">
-                            <div class="tab-item">
-                                <span>🏠</span>
-                                <span class="tab-text">首页</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>📦</span>
-                                <span class="tab-text">个人定制</span>
-                            </div>
-                            <div class="tab-item active">
-                                <span>🏛️</span>
-                                <span class="tab-text">关于我们</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>👤</span>
-                                <span class="tab-text">我的</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="page-title">5. 关于我们页</div>
-        </div>
-
-        <!-- 个人中心页 -->
-        <div>
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <div class="mini-page">
-                        <div class="profile-header">
-                            <div class="avatar">👤</div>
-                            <div class="user-info">
-                                <div class="user-name">请点击登录</div>
-                                <div class="user-desc">注册/登录会员享更多特权</div>
-                            </div>
-                            <div class="login-btn">立即登录</div>
-                        </div>
-
-                        <div class="order-section">
-                            <div class="order-header">
-                                <span class="order-title">所有订单</span>
-                                <span class="order-all">全部 →</span>
-                            </div>
-                            <div class="order-nav">
-                                <div class="order-item">
-                                    <span class="order-icon">📁</span>
-                                    <span class="order-text">待支付</span>
-                                </div>
-                                <div class="order-item">
-                                    <span class="order-icon">⏳</span>
-                                    <span class="order-text">进行中</span>
-                                    <span class="order-badge">3</span>
-                                </div>
-                                <div class="order-item">
-                                    <span class="order-icon">✅</span>
-                                    <span class="order-text">已完成</span>
-                                </div>
-                                <div class="order-item">
-                                    <span class="order-icon">📦</span>
-                                    <span class="order-text">已取消</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="function-section">
-                            <div class="function-title">我的功能</div>
-                            <div class="function-list">
-                                <div class="function-item">
-                                    <span class="function-icon">💬</span>
-                                    <span class="function-text">最新消息</span>
-                                    <span class="function-badge">1</span>
-                                </div>
-                                <div class="function-item">
-                                    <span class="function-icon">📊</span>
-                                    <span class="function-text">我的订阅</span>
-                                </div>
-                                <div class="function-item">
-                                    <span class="function-icon">📋</span>
-                                    <span class="function-text">我的表单</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="phone-section">
-                            <span class="phone-icon">📞</span>
-                            <span class="phone-number">13800000000</span>
-                        </div>
-
-                        <div class="logout-btn">退出当前登录</div>
-
-                        <div style="height: 80px;"></div>
-
-                        <div class="contact-buttons">
-                            <div class="contact-btn">↗</div>
-                            <div class="contact-btn">📞</div>
-                            <div class="contact-btn wechat">💬</div>
-                        </div>
-
-                        <div class="tabbar">
-                            <div class="tab-item">
-                                <span>🏠</span>
-                                <span class="tab-text">首页</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>📦</span>
-                                <span class="tab-text">个人定制</span>
-                            </div>
-                            <div class="tab-item">
-                                <span>🏛️</span>
-                                <span class="tab-text">关于我们</span>
-                            </div>
-                            <div class="tab-item active">
-                                <span>👤</span>
-                                <span class="tab-text">我的</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="page-title">6. 个人中心页</div>
-        </div>
+        <div class="page-title">1. 首页</div>
     </div>
+
+    <!-- 2. 产品列表页 -->
+    <div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="mini-page">
+                    <div class="navbar">
+                        <div class="navbar-title">全部产品</div>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input class="search-input" placeholder="请输入商品名称" />
+                        </div>
+                    </div>
+
+                    <div class="category-scroll">
+                        <div class="category-list">
+                            <div class="category-item active">全部</div>
+                            <div class="category-item">玉石类</div>
+                            <div class="category-item">木制类</div>
+                            <div class="category-item">宝石类</div>
+                            <div class="category-item">果核类</div>
+                        </div>
+                    </div>
+
+                    <div class="product-grid">
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1612815338314-a61e8ef07cb2?w=400&q=80" class="product-image" alt="产品" />
+                            <div class="product-info">
+                                <span class="product-name">海南黄花梨鬼脸对牌</span>
+                                <div class="product-bottom">
+                                    <span class="product-price">¥148</span>
+                                    <div class="cart-btn">🛒</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" class="product-image" alt="产品" />
+                            <div class="product-info">
+                                <span class="product-name">碧玺耳环</span>
+                                <div class="product-bottom">
+                                    <span class="product-price">¥236</span>
+                                    <div class="cart-btn">🛒</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" class="product-image" alt="产品" />
+                            <div class="product-info">
+                                <span class="product-name">和田玉挂件</span>
+                                <div class="product-bottom">
+                                    <span class="product-price">¥588</span>
+                                    <div class="cart-btn">🛒</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&q=80" class="product-image" alt="产品" />
+                            <div class="product-info">
+                                <span class="product-name">橄榄核雕手串</span>
+                                <div class="product-bottom">
+                                    <span class="product-price">¥168</span>
+                                    <div class="cart-btn">🛒</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="height: 80px;"></div>
+
+                    <div class="cart-float">
+                        🛒
+                        <div class="cart-badge">3</div>
+                    </div>
+
+                    <div class="tabbar">
+                        <div class="tab-item">
+                            <span>🏠</span>
+                            <span class="tab-text">首页</span>
+                        </div>
+                        <div class="tab-item active">
+                            <span>📦</span>
+                            <span class="tab-text">个人定制</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>🏛️</span>
+                            <span class="tab-text">关于我们</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>👤</span>
+                            <span class="tab-text">我的</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-title">2. 产品列表页</div>
+    </div>
+
+    <!-- 3. 产品详情页 -->
+    <div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="mini-page">
+                    <div class="image-swiper">
+                        <img src="https://images.unsplash.com/photo-1612815338314-a61e8ef07cb2?w=800&q=80" class="detail-image" alt="产品" />
+                    </div>
+
+                    <div class="product-header">
+                        <div class="product-name">海南黄花梨鬼脸对牌</div>
+                        <div class="share-btn">↗</div>
+                    </div>
+
+                    <div class="product-price-section">
+                        <span class="product-price">¥148</span>
+                        <span class="product-orders">已预订: 0</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail-section">
+                        <div>
+                            <span class="title-line"></span>
+                            <span class="title-text">服务详情</span>
+                        </div>
+                        <div class="detail-text">
+                            精选上等天然材质，经传统工艺匠心打造，质地温润细腻，色泽醇厚包浆，兼具收藏与把玩价值。其造型古朴雅致，线条流畅自然，细节刻画生动，无论是日常盘玩还是案头陈设，都能彰显主人的文化品位。随着时间推移，器物表面会逐渐形成莹润的包浆，愈显岁月沉淀之美，是传承文化、修身养性的优质之选。
+                        </div>
+                    </div>
+
+                    <div class="brand-footer">
+                        <img class="brand-logo" src="https://via.placeholder.com/100x40?text=Brand" alt="Brand" />
+                        <span class="brand-text">由凡科轻站提供技术支持</span>
+                    </div>
+
+                    <div style="height: 80px;"></div>
+
+                    <div class="contact-buttons">
+                        <div class="contact-btn">↗</div>
+                        <div class="contact-btn">📞</div>
+                        <div class="contact-btn wechat">💬</div>
+                    </div>
+
+                    <div class="bottom-bar">
+                        <div class="phone-btn">
+                            <span class="phone-icon">📞</span>
+                            <span class="phone-text">电话</span>
+                        </div>
+                        <div class="reserve-btn">立即预订</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-title">3. 产品详情页</div>
+    </div>
+
+    <!-- 4. 个人定制页 -->
+    <div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="mini-page">
+                    <div class="navbar">
+                        <div class="navbar-title">个人定制</div>
+                    </div>
+
+                    <div class="custom-banner">
+                        蓝田玉手镯
+                    </div>
+
+                    <div class="custom-form">
+                        <div class="form-title">
+                            ⛰️ 专属定制
+                            <span class="form-subtitle">为您专属打造</span>
+                        </div>
+
+                        <div class="form-item">
+                            <label class="form-label">
+                                <span class="required">*</span>姓名
+                            </label>
+                            <input class="form-input" placeholder="请输入您的姓名" />
+                        </div>
+
+                        <div class="form-item">
+                            <label class="form-label">
+                                <span class="required">*</span>电话
+                            </label>
+                            <input class="form-input" placeholder="请输入您的手机号" />
+                        </div>
+
+                        <div class="form-item">
+                            <label class="form-label">
+                                <span class="required">*</span>材质
+                            </label>
+                            <div class="form-radio-group">
+                                <div class="radio-item active">
+                                    <div class="radio-circle">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                    <span>玉石类</span>
+                                </div>
+                                <div class="radio-item">
+                                    <div class="radio-circle">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                    <span>木制类</span>
+                                </div>
+                                <div class="radio-item">
+                                    <div class="radio-circle">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                    <span>宝石类</span>
+                                </div>
+                                <div class="radio-item">
+                                    <div class="radio-circle">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                    <span>果核类</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-item">
+                            <label class="form-label">
+                                <span class="required">*</span>目标用途
+                            </label>
+                            <div class="form-radio-group">
+                                <div class="radio-item active">
+                                    <div class="radio-circle">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                    <span>个人佩戴</span>
+                                </div>
+                                <div class="radio-item">
+                                    <div class="radio-circle">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                    <span>收藏</span>
+                                </div>
+                                <div class="radio-item">
+                                    <div class="radio-circle">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                    <span>礼赠</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit-btn">提交定制需求</button>
+                    </div>
+
+                    <div style="height: 80px;"></div>
+
+                    <div class="contact-buttons">
+                        <div class="contact-btn">↗</div>
+                        <div class="contact-btn">📞</div>
+                        <div class="contact-btn wechat">💬</div>
+                    </div>
+
+                    <div class="tabbar">
+                        <div class="tab-item">
+                            <span>🏠</span>
+                            <span class="tab-text">首页</span>
+                        </div>
+                        <div class="tab-item active">
+                            <span>📦</span>
+                            <span class="tab-text">个人定制</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>🏛️</span>
+                            <span class="tab-text">关于我们</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>👤</span>
+                            <span class="tab-text">我的</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-title">4. 个人定制页</div>
+    </div>
+
+    <!-- 5. 关于我们页 -->
+    <div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="mini-page">
+                    <div class="navbar">
+                        <div class="navbar-title">关于我们</div>
+                    </div>
+
+                    <div class="about-banner">
+                        <div class="about-title">文玩官网</div>
+                        <div class="about-desc">
+                            我们致力于传承和发扬中华文玩文化，<br/>
+                            精选优质天然材质，结合传统工艺与现代审美，<br/>
+                            为您提供品质卓越的文玩珍品。<br/>
+                            同时提供个性定制、鉴赏评估、养护等专业咨询服务。
+                        </div>
+                    </div>
+
+                    <div class="why-section">
+                        <div class="why-title">为什么选择我们？</div>
+                        <div class="why-list">
+                            <div class="why-item">
+                                <div class="why-icon">💎</div>
+                                <div class="why-text">品质甄选</div>
+                                <div class="why-desc">坚持源头严选+专业鉴定双重标准</div>
+                            </div>
+                            <div class="why-item">
+                                <div class="why-icon">🏭</div>
+                                <div class="why-text">全阶适配</div>
+                                <div class="why-desc">限量手作，按需匹配</div>
+                            </div>
+                            <div class="why-item">
+                                <div class="why-icon">💝</div>
+                                <div class="why-text">贴心服务</div>
+                                <div class="why-desc">支持专属定制+购后提供养护技巧</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="store-section">
+                        <div class="store-title">线下门店</div>
+                        <div class="store-card">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" class="store-image" alt="门店" />
+                            <div class="store-info">
+                                <div class="store-name">XXX文玩海珠店</div>
+                                <div class="store-address">
+                                    <span>📍</span>
+                                    <span>广州市工业大道</span>
+                                </div>
+                            </div>
+                            <div class="store-arrow">→</div>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" class="store-image" alt="门店" />
+                            <div class="store-info">
+                                <div class="store-name">XXX文玩天河店</div>
+                                <div class="store-address">
+                                    <span>📍</span>
+                                    <span>广州市天河路</span>
+                                </div>
+                            </div>
+                            <div class="store-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <div style="height: 80px;"></div>
+
+                    <div class="contact-buttons">
+                        <div class="contact-btn">↗</div>
+                        <div class="contact-btn">📞</div>
+                        <div class="contact-btn wechat">💬</div>
+                    </div>
+
+                    <div class="tabbar">
+                        <div class="tab-item">
+                            <span>🏠</span>
+                            <span class="tab-text">首页</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>📦</span>
+                            <span class="tab-text">个人定制</span>
+                        </div>
+                        <div class="tab-item active">
+                            <span>🏛️</span>
+                            <span class="tab-text">关于我们</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>👤</span>
+                            <span class="tab-text">我的</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-title">5. 关于我们页</div>
+    </div>
+
+    <!-- 6. 个人中心页 -->
+    <div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="mini-page">
+                    <div class="profile-header">
+                        <div class="avatar">👤</div>
+                        <div class="user-info">
+                            <div class="user-name">请点击登录</div>
+                            <div class="user-desc">注册/登录会员享更多特权</div>
+                        </div>
+                        <div class="login-btn">立即登录</div>
+                    </div>
+
+                    <div class="order-section">
+                        <div class="order-header">
+                            <span class="order-title">所有订单</span>
+                            <span class="order-all">全部 →</span>
+                        </div>
+                        <div class="order-nav">
+                            <div class="order-item">
+                                <span class="order-icon">📁</span>
+                                <span class="order-text">待支付</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="order-icon">⏳</span>
+                                <span class="order-text">进行中</span>
+                                <span class="order-badge">3</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="order-icon">✅</span>
+                                <span class="order-text">已完成</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="order-icon">📦</span>
+                                <span class="order-text">已取消</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="function-section">
+                        <div class="function-title">我的功能</div>
+                        <div class="function-list">
+                            <div class="function-item">
+                                <span class="function-icon">💬</span>
+                                <span class="function-text">最新消息</span>
+                                <span class="function-badge">1</span>
+                            </div>
+                            <div class="function-item">
+                                <span class="function-icon">📊</span>
+                                <span class="function-text">我的订阅</span>
+                            </div>
+                            <div class="function-item">
+                                <span class="function-icon">📋</span>
+                                <span class="function-text">我的表单</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phone-section">
+                        <span class="phone-icon">📞</span>
+                        <span class="phone-number">13800000000</span>
+                    </div>
+
+                    <div class="logout-btn">退出当前登录</div>
+
+                    <div style="height: 80px;"></div>
+
+                    <div class="contact-buttons">
+                        <div class="contact-btn">↗</div>
+                        <div class="contact-btn">📞</div>
+                        <div class="contact-btn wechat">💬</div>
+                    </div>
+
+                    <div class="tabbar">
+                        <div class="tab-item">
+                            <span>🏠</span>
+                            <span class="tab-text">首页</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>📦</span>
+                            <span class="tab-text">个人定制</span>
+                        </div>
+                        <div class="tab-item">
+                            <span>🏛️</span>
+                            <span class="tab-text">关于我们</span>
+                        </div>
+                        <div class="tab-item active">
+                            <span>👤</span>
+                            <span class="tab-text">我的</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-title">6. 个人中心页</div>
+    </div>
+</div>
 </body>
 </html>
-</content>
-</file>
-</seed:tool_call>
